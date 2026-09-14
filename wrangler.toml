@@ -10,6 +10,6 @@ pages_build_output_dir = "."
 # Archivio delle email raccolte da /api/avviso.
 # Crea il namespace con:  npx wrangler kv namespace create AVVISI
 # poi incolla qui l'id che ti restituisce.
-[[kv_namespaces]]
-binding = "AVVISI"
-id = "INSERIRE_ID_NAMESPACE"
+# [[kv_namespaces]]
+# binding = "AVVISI"
+# id = "INSERIRE_ID_NAMESPACE"
