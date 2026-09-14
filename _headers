@@ -1,0 +1,14 @@
+# Cache: il guscio HTML sempre fresco, gli asset immutabili.
+/
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+/assets/*
+  Cache-Control: public, max-age=604800
+
+/img/*
+  Cache-Control: public, max-age=2592000
+
+/data/offerte.json
+  Cache-Control: public, max-age=300

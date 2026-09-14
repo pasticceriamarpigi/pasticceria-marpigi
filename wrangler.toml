@@ -1,0 +1,15 @@
+# Pasticceria Marpigi — configurazione Cloudflare Pages
+#
+#   npx wrangler pages deploy .        (primo deploy manuale)
+#   npx wrangler pages dev .           (sviluppo in locale con le Functions)
+
+name = "pasticceria-marpigi"
+compatibility_date = "2026-09-01"
+pages_build_output_dir = "."
+
+# Archivio delle email raccolte da /api/avviso.
+# Crea il namespace con:  npx wrangler kv namespace create AVVISI
+# poi incolla qui l'id che ti restituisce.
+[[kv_namespaces]]
+binding = "AVVISI"
+id = "INSERIRE_ID_NAMESPACE"

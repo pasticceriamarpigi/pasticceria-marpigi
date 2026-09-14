@@ -1,0 +1,317 @@
+/* =========================================================
+   Pasticceria Marpigi — foglio di stile
+   Palette campionata direttamente dall'insegna.
+   ========================================================= */
+
+:root{
+  /* --- colori dell'insegna --- */
+  --cacao:        #45311E;   /* il marrone del lettering */
+  --cacao-chiaro: #6B5236;
+  --sabbia:       #AD935F;   /* il fondo dell'ovale */
+  --sabbia-tenue: #C6AE81;   /* il motivo a cerchi */
+  --panna:        #F7F2E8;   /* bianco caldo, fasce alternate */
+  --bianco:       #FFFFFF;
+
+  /* --- ruoli --- */
+  --fondo:      var(--bianco);
+  --fondo-alt:  var(--panna);
+  --testo:      var(--cacao);
+  --testo-soft: #7A6952;
+  --filo:       #E3DACA;
+
+  /* --- misure --- */
+  --colonna: 1120px;
+  --gutter:  clamp(20px, 5vw, 40px);
+}
+
+:root[data-theme="dark"],
+:root:not([data-theme="light"]){
+  color-scheme: light;
+}
+
+/* Il sito è pensato per fondo chiaro: in dark mode scuriamo appena
+   il bianco invece di invertire, così l'insegna resta leggibile. */
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --fondo:      #17120C;
+    --fondo-alt:  #1F1810;
+    --testo:      #F2E8D8;
+    --testo-soft: #BFAC90;
+    --filo:       #3A2F22;
+    --cacao:      #F2E8D8;
+    --panna:      #1F1810;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --fondo:#17120C; --fondo-alt:#1F1810; --testo:#F2E8D8;
+  --testo-soft:#BFAC90; --filo:#3A2F22; --cacao:#F2E8D8; --panna:#1F1810;
+  color-scheme: dark;
+}
+
+/* --------------------------------------------------------
+   Base
+   -------------------------------------------------------- */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{animation:none !important; transition:none !important}
+}
+
+body{
+  margin:0;
+  background:var(--fondo);
+  color:var(--testo);
+  font-family:'Karla',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,sans-serif;
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+img{display:block; max-width:100%; height:auto}
+a{color:inherit}
+
+h1,h2,h3{
+  font-family:'Fraunces','Georgia',serif;
+  font-variation-settings:'SOFT' 40,'WONK' 1;
+  font-weight:500;
+  line-height:1.1;
+  letter-spacing:-0.01em;
+  margin:0 0 .5rem;
+}
+h2{font-size:clamp(1.9rem, 4.2vw, 2.9rem)}
+h3{font-size:1.35rem; font-weight:600}
+p{margin:0 0 1rem}
+
+.colonna{max-width:var(--colonna); margin-inline:auto; padding-inline:var(--gutter)}
+.fascia{padding-block:clamp(56px, 9vw, 104px)}
+.fascia--panna{background:var(--fondo-alt)}
+
+.intro{
+  color:var(--testo-soft);
+  max-width:58ch;
+  font-size:1.05rem;
+  margin-bottom:clamp(32px,5vw,52px);
+}
+
+:where(a,button,input,textarea,summary):focus-visible{
+  outline:2px solid var(--sabbia);
+  outline-offset:3px;
+  border-radius:2px;
+}
+
+/* --------------------------------------------------------
+   Il motivo a cerchi dell'insegna, ricostruito in SVG
+   -------------------------------------------------------- */
+.motivo{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280' viewBox='0 0 280 280'%3E%3Cg fill='none' stroke='%23C6AE81' stroke-width='26'%3E%3Ccircle cx='70' cy='70' r='92'/%3E%3Ccircle cx='210' cy='210' r='92'/%3E%3Ccircle cx='210' cy='70' r='48'/%3E%3Ccircle cx='70' cy='210' r='48'/%3E%3C/g%3E%3C/svg%3E");
+  background-color:var(--sabbia);
+  background-size:340px;
+}
+
+/* --------------------------------------------------------
+   Testata
+   -------------------------------------------------------- */
+.testata{
+  position:sticky; top:0; z-index:60;
+  background:color-mix(in srgb, var(--fondo) 94%, transparent);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--filo);
+}
+.testata__interno{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:24px; min-height:66px;
+}
+.marchio{display:flex; align-items:center; gap:10px; text-decoration:none}
+.marchio img{width:112px}
+.marchio span{
+  font-family:'Fraunces',serif; font-size:1.15rem; font-weight:600;
+}
+
+.menu{display:flex; gap:28px; list-style:none; margin:0; padding:0}
+.menu a{
+  text-decoration:none; font-size:.93rem; color:var(--testo-soft);
+  padding-block:6px; border-bottom:1px solid transparent;
+}
+.menu a:hover{color:var(--testo); border-bottom-color:var(--sabbia)}
+@media (max-width:900px){ .menu{display:none} }
+
+/* --------------------------------------------------------
+   Bottoni
+   -------------------------------------------------------- */
+.bottone{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:12px 24px; text-decoration:none;
+  font-size:.95rem; font-weight:600; letter-spacing:.01em;
+  border:1.5px solid var(--cacao); background:var(--cacao); color:var(--panna);
+  transition:background .18s ease, color .18s ease;
+}
+.bottone:hover{background:transparent; color:var(--cacao)}
+.bottone--vuoto{background:transparent; color:var(--cacao)}
+.bottone--vuoto:hover{background:var(--cacao); color:var(--panna)}
+.bottone--chiaro{
+  border-color:#FFF; background:#FFF; color:#45311E;
+}
+.bottone--chiaro:hover{background:transparent; color:#FFF}
+.bottoni{display:flex; flex-wrap:wrap; gap:12px}
+
+/* --------------------------------------------------------
+   Apertura: l'insegna
+   -------------------------------------------------------- */
+.insegna{
+  padding-block:clamp(48px,8vw,86px);
+  text-align:center;
+  border-bottom:1px solid var(--filo);
+}
+.insegna__logo{
+  width:min(560px, 84vw); margin-inline:auto;
+  box-shadow:0 18px 48px rgba(69,49,30,.22);
+}
+.insegna__riga{
+  margin:30px auto 8px;
+  font-family:'Fraunces',serif;
+  font-size:clamp(1.5rem,3.6vw,2.1rem);
+  color:#FFF;
+  max-width:22ch;
+  text-shadow:0 1px 14px rgba(69,49,30,.45);
+}
+.insegna__sotto{
+  color:#FFF; opacity:.92; max-width:46ch; margin:0 auto 26px;
+  text-shadow:0 1px 10px rgba(69,49,30,.5);
+}
+.insegna .bottoni{justify-content:center}
+
+/* --------------------------------------------------------
+   Il banco: prodotti
+   -------------------------------------------------------- */
+.banco{
+  display:grid; gap:clamp(24px,3.4vw,40px);
+  grid-template-columns:repeat(auto-fit, minmax(268px,1fr));
+}
+.voce figure{margin:0}
+.voce__foto{
+  aspect-ratio:5/4; width:100%; object-fit:cover;
+  background:var(--fondo-alt);
+}
+.voce h3{margin:16px 0 6px; color:var(--testo)}
+.voce p{margin:0; color:var(--testo-soft); font-size:.96rem}
+.voce__filo{height:2px; background:var(--sabbia); width:44px; margin-top:14px}
+
+/* segnaposto finché non ci sono le foto vere */
+.segnaposto{
+  display:grid; place-items:center;
+  background:
+    linear-gradient(135deg, var(--panna), color-mix(in srgb, var(--sabbia) 30%, var(--panna)));
+  color:color-mix(in srgb, var(--cacao) 45%, transparent);
+  font-family:'Fraunces',serif; font-size:1rem;
+}
+
+/* --------------------------------------------------------
+   Offerte (caricate da data/offerte.json)
+   -------------------------------------------------------- */
+.lavagna{
+  color:#FFF;
+  position:relative;
+}
+.lavagna::before{
+  content:""; position:absolute; inset:0;
+  background:rgba(69,49,30,.82);
+}
+.lavagna > *{position:relative}
+.lavagna h2{color:#FFF}
+.lavagna .intro{color:rgba(255,255,255,.78)}
+
+.offerte{list-style:none; margin:0; padding:0; display:grid; gap:2px}
+.offerte li{
+  display:grid; gap:4px 28px; padding:22px 0;
+  border-top:1px solid rgba(255,255,255,.22);
+  grid-template-columns:170px 1fr;
+  align-items:baseline;
+}
+.offerte li:last-child{border-bottom:1px solid rgba(255,255,255,.22)}
+.offerte .quando{
+  font-size:.88rem; color:var(--sabbia-tenue); font-weight:600;
+}
+.offerte h3{color:#FFF; font-size:1.3rem; margin:0}
+.offerte p{color:rgba(255,255,255,.8); margin:6px 0 0; font-size:.96rem; max-width:56ch}
+.offerte .testo{grid-column:2}
+@media (max-width:640px){
+  .offerte li{grid-template-columns:1fr}
+  .offerte .testo{grid-column:1}
+}
+
+/* --------------------------------------------------------
+   Galleria
+   -------------------------------------------------------- */
+.galleria{
+  display:grid; gap:10px;
+  grid-template-columns:repeat(auto-fit, minmax(160px,1fr));
+}
+.galleria img, .galleria .segnaposto{aspect-ratio:1; object-fit:cover; width:100%}
+
+/* --------------------------------------------------------
+   Recensioni
+   -------------------------------------------------------- */
+.recensioni{
+  display:grid; gap:clamp(24px,3vw,36px);
+  grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+}
+.recensione{border-top:2px solid var(--sabbia); padding-top:20px}
+.recensione blockquote{
+  margin:0 0 14px; font-family:'Fraunces',serif; font-size:1.12rem;
+  line-height:1.45; font-weight:400;
+}
+.recensione figcaption{font-size:.88rem; color:var(--testo-soft)}
+.stelle{color:var(--sabbia); letter-spacing:2px; font-size:.95rem; margin-bottom:10px}
+
+/* --------------------------------------------------------
+   Informazioni
+   -------------------------------------------------------- */
+.info{
+  display:grid; gap:clamp(28px,4vw,48px);
+  grid-template-columns:repeat(auto-fit, minmax(230px,1fr));
+}
+.info h3{font-family:'Karla',sans-serif; font-size:.98rem; font-weight:700; margin-bottom:12px}
+.info p, .info ul{color:var(--testo-soft); font-size:.96rem}
+.orari{list-style:none; margin:0; padding:0}
+.orari li{display:flex; justify-content:space-between; gap:16px; padding:6px 0; border-bottom:1px dotted var(--filo)}
+.info a{color:var(--testo); text-decoration:underline; text-decoration-color:var(--sabbia); text-underline-offset:3px}
+
+/* --------------------------------------------------------
+   Shop online
+   -------------------------------------------------------- */
+.shop{display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(32px,5vw,64px); align-items:start}
+@media (max-width:820px){ .shop{grid-template-columns:1fr} }
+.shop ul{list-style:none; margin:0 0 28px; padding:0}
+.shop ul li{padding:9px 0 9px 24px; position:relative; color:var(--testo-soft); border-bottom:1px dotted var(--filo)}
+.shop ul li::before{content:"—"; position:absolute; left:0; color:var(--sabbia)}
+
+.avviso form{display:grid; gap:12px}
+.avviso label{font-size:.9rem; font-weight:600}
+.avviso input{
+  font:inherit; padding:12px 14px; border:1.5px solid var(--filo);
+  background:var(--fondo); color:var(--testo);
+}
+.avviso input:focus{border-color:var(--sabbia); outline:none}
+.avviso small{color:var(--testo-soft); font-size:.82rem}
+.avviso .esito{font-size:.92rem; padding:10px 0}
+
+/* --------------------------------------------------------
+   Piede
+   -------------------------------------------------------- */
+.piede{background:var(--cacao); color:#EDE2CE; padding-block:48px 28px}
+:root[data-theme="dark"] .piede,
+:root:not([data-theme="light"]) .piede{background:#0F0B07}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]) .piede{background:#45311E}
+}
+.piede a{color:#EDE2CE}
+.piede__interno{display:flex; flex-wrap:wrap; gap:28px; justify-content:space-between; align-items:flex-start}
+.piede h3{color:#FFF; font-family:'Karla',sans-serif; font-size:.95rem; font-weight:700}
+.piede ul{list-style:none; margin:0; padding:0; font-size:.93rem; line-height:2}
+.piede__nota{
+  margin-top:36px; padding-top:18px; font-size:.8rem; opacity:.6;
+  border-top:1px solid rgba(237,226,206,.2);
+}
