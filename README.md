@@ -26,8 +26,9 @@ Campionati dall'insegna, in cima a `assets/style.css`:
 | `--panna` | `#F7F2E8` | fasce alternate
 | `--bianco` | `#FFFFFF` | fondo dominante
 
-Il motivo a cerchi dell'insegna è ricostruito in SVG dentro la classe
-`.motivo`: nessun file immagine, si ricolora cambiando l'hex nell'URL.
+Lo sfondo della sezione d'apertura è una sfumatura diagonale sabbia → cacao
+dentro la classe `.motivo`, in `assets/style.css`: nessun file immagine,
+solo un `linear-gradient` tra i token di colore.
 
 ## Cosa manca
 

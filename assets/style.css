@@ -120,12 +120,13 @@ p{margin:0 0 1rem}
 }
 
 /* --------------------------------------------------------
-   Il motivo a cerchi dell'insegna, ricostruito in SVG
+   Sfondo dell'insegna: sfumatura sabbia → cacao, in diagonale.
+   Un'unica composizione (nessuna piastrella che si ripete).
    -------------------------------------------------------- */
 .motivo{
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280' viewBox='0 0 280 280'%3E%3Cg fill='none' stroke='%23C6AE81' stroke-width='26'%3E%3Ccircle cx='70' cy='70' r='92'/%3E%3Ccircle cx='210' cy='210' r='92'/%3E%3Ccircle cx='210' cy='70' r='48'/%3E%3Ccircle cx='70' cy='210' r='48'/%3E%3C/g%3E%3C/svg%3E");
-  background-color:var(--sabbia);
-  background-size:340px;
+  background:
+    radial-gradient(ellipse 900px 500px at 80% 15%, rgba(255,255,255,.14), transparent 60%),
+    linear-gradient(135deg, var(--sabbia) 0%, var(--sabbia-tenue) 42%, var(--cacao-chiaro) 100%);
 }
 
 /* --------------------------------------------------------
