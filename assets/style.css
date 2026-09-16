@@ -13,8 +13,11 @@
   --bianco:       #FFFFFF;
 
   /* --- ruoli --- */
+  /* tre livelli di fondo: le fasce si alternano fra questi,
+     così ogni sezione si stacca da quella accanto. */
   --fondo:      var(--bianco);
   --fondo-alt:  var(--panna);
+  --fondo-alt2: #EFE5D2;
   --testo:      var(--cacao);
   --testo-soft: #7A6952;
   --filo:       #E3DACA;
@@ -33,19 +36,20 @@
    il bianco invece di invertire, così l'insegna resta leggibile. */
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --fondo:      #17120C;
-    --fondo-alt:  #1F1810;
+    --fondo:      #13100A;
+    --fondo-alt:  #241C13;
+    --fondo-alt2: #33281B;
     --testo:      #F2E8D8;
     --testo-soft: #BFAC90;
-    --filo:       #3A2F22;
+    --filo:       #46392A;
     --cacao:      #F2E8D8;
     --panna:      #1F1810;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"]{
-  --fondo:#17120C; --fondo-alt:#1F1810; --testo:#F2E8D8;
-  --testo-soft:#BFAC90; --filo:#3A2F22; --cacao:#F2E8D8; --panna:#1F1810;
+  --fondo:#13100A; --fondo-alt:#241C13; --fondo-alt2:#33281B; --testo:#F2E8D8;
+  --testo-soft:#BFAC90; --filo:#46392A; --cacao:#F2E8D8; --panna:#1F1810;
   color-scheme: dark;
 }
 
@@ -87,7 +91,20 @@ p{margin:0 0 1rem}
 
 .colonna{max-width:var(--colonna); margin-inline:auto; padding-inline:var(--gutter)}
 .fascia{padding-block:clamp(56px, 9vw, 104px)}
+
+/* Fondi delle fasce. Alternare --panna e --sabbia (o niente) sezione
+   dopo sezione: se si attiva o si disattiva una sezione, ricontrollare
+   l'ordine in index.html perché due fasce vicine non restino uguali. */
 .fascia--panna{background:var(--fondo-alt)}
+.fascia--sabbia{background:var(--fondo-alt2)}
+
+/* Rete di sicurezza: se due fasce con lo stesso fondo finiscono
+   comunque una sull'altra, resta almeno un filo a dividerle. */
+.fascia + .fascia{border-top:1px solid var(--filo)}
+.fascia--panna + .fascia,
+.fascia--sabbia + .fascia,
+.fascia + .fascia--panna,
+.fascia + .fascia--sabbia{border-top:0}
 
 .intro{
   color:var(--testo-soft);
