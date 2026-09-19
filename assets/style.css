@@ -294,29 +294,21 @@ p{margin:0 0 1rem}
 .info a{color:var(--testo); text-decoration:underline; text-decoration-color:var(--sabbia); text-underline-offset:3px}
 
 /* --------------------------------------------------------
-   Mappa: anteprima statica cliccabile verso Google Maps.
+   Mappa: anteprima cliccabile verso Google Maps, incassata
+   nella card "Indirizzo" subito sotto il link testuale.
    L'iframe è solo visivo (pointer-events:none): il click
    arriva sempre al link <a> che avvolge tutto.
    -------------------------------------------------------- */
 .mappa{
   position:relative; display:block;
-  aspect-ratio:16/8; width:100%; overflow:hidden;
-  border:1px solid var(--filo); text-decoration:none;
+  aspect-ratio:4/3; width:100%; overflow:hidden;
+  border:1px solid var(--filo);
 }
 .mappa__frame{
   position:absolute; inset:0; width:100%; height:100%;
   border:0; pointer-events:none;
 }
-.mappa__bottone{
-  position:absolute; left:50%; bottom:20px; transform:translateX(-50%);
-  display:inline-flex; align-items:center; gap:8px;
-  padding:12px 24px; font-size:.95rem; font-weight:600; letter-spacing:.01em;
-  background:var(--cacao); color:var(--panna);
-  box-shadow:0 8px 24px rgba(0,0,0,.25);
-  transition:background .18s ease, color .18s ease;
-}
-.mappa:hover .mappa__bottone,
-.mappa:focus-visible .mappa__bottone{background:var(--cacao-chiaro)}
+.mappa:hover{border-color:var(--sabbia)}
 
 /* --------------------------------------------------------
    Shop online
